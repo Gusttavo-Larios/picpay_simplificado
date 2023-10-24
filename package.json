@@ -1,17 +1,17 @@
 {
   "name": "picpay_simplificado",
   "module": "index.ts",
-  "type": "module",
-  "scripts": {
-    "start": "bun run index.ts"
-  },
   "devDependencies": {
     "bun-types": "latest"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
+  "scripts": {
+    "start": "bun run index.ts"
+  },
+  "type": "module",
   "dependencies": {
-    "fastify": "^4.23.2"
+    "fastify": "^4.24.3"
   }
 }
