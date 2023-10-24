@@ -17,9 +17,10 @@ fastify.get("/", async function handler(request, reply) {
 });
 
 fastify.post("/company", async function name(request, reply) {
-  const company = request.body as CompanyType;
+  const params = request.body as CompanyType;
 
-  CompanyRepository.create(company);
+  const company = CompanyRepository.create(params);
+
   return reply.code(201).send(company);
 });
 
