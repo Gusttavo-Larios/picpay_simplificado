@@ -66,3 +66,7 @@ connection.run(`
         foreign key (target_account_id) references account(id)
     );
 `);
+
+connection.run(`
+        insert into bank (compe, name) values (001, 'Banco do Brasil S/A')
+`);
