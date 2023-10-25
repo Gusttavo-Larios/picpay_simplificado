@@ -10,7 +10,7 @@ export default interface BankEntity extends BankType {
 }
 
 export type BankType = {
-  id?: number;
+  id: number;
   compe: number;
   name: string;
 };

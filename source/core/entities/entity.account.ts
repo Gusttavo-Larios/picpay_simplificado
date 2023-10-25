@@ -10,7 +10,7 @@ export default interface AccountEntity extends AccountType {
 }
 
 export type AccountType = {
-  id?: number;
+  id: number;
   accountNumber: number;
   bankId: number;
 };

@@ -3,12 +3,11 @@ import Fastify from "fastify";
 import { SERVER_PORT } from "./source/config/config.environment_variables";
 import CompanyRepository from "./source/database/repositories/repository.company";
 import { CompanyType } from "./source/core/entities/entity.company";
-import AccountRepository from "./source/database/repositories/respository.account";
-import { AccountType } from "./source/core/entities/entity.account";
 import { CreateAccountParams } from "./source/controllers/params/params.company_account";
 import { PeopleType } from "./source/core/entities/entity.people";
 import PeopleRepository from "./source/database/repositories/repository.people";
-import { AccountTypeEnum } from "./source/enums/enum.account_type";
+import CreatePeopleAccountUseCase from "./source/application/people/use_case_impl.create_account";
+import CreateCompanyAccountUseCase from "./source/application/company/use_case_impl.create_account";
 
 const fastify = Fastify({
   logger: true,
@@ -19,7 +18,6 @@ fastify.get("/", async function handler(request, reply) {
   return { hello: "world" };
 });
 
-
 fastify.post("/people", async (request, reply) => {
   const params = request.body as PeopleType;
 
@@ -29,18 +27,14 @@ fastify.post("/people", async (request, reply) => {
 });
 
 fastify.post("/people/account", async (request, reply) => {
-  const params = request.body as CreateAccountParams;
+  const { ownerId, bankId } = request.body as CreateAccountParams;
 
-  const account: AccountType = AccountRepository.create(
-    params.ownerId,
-    params.bankId,
-    AccountTypeEnum.Personal
-  );
+  const createPeopleAccountUseCase = new CreatePeopleAccountUseCase();
+
+  const account = createPeopleAccountUseCase.createAccount(ownerId, bankId);
 
   return reply.code(201).send(account);
 });
-
-
 
 fastify.post("/company", async function name(request, reply) {
   const params = request.body as CompanyType;
@@ -51,13 +45,10 @@ fastify.post("/company", async function name(request, reply) {
 });
 
 fastify.post("/company/account", async (request, reply) => {
-  const params = request.body as CreateAccountParams;
+  const { ownerId, bankId } = request.body as CreateAccountParams;
 
-  const account: AccountType = AccountRepository.create(
-    params.ownerId,
-    params.bankId,
-    AccountTypeEnum.Business
-  );
+  const createCompanyAccountUseCase = new CreateCompanyAccountUseCase();
+  const account = createCompanyAccountUseCase.createAccount(ownerId, bankId);
 
   return reply.code(201).send(account);
 });
