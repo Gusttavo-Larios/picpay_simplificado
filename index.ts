@@ -6,6 +6,8 @@ import { CompanyType } from "./source/core/entities/entity.company";
 import AccountRepository from "./source/database/repositories/respository.account";
 import { AccountType } from "./source/core/entities/entity.account";
 import { CreateAccountParams } from "./source/controllers/params/params.company_account";
+import { PeopleType } from "./source/core/entities/entity.people";
+import PeopleRepository from "./source/database/repositories/repository.people";
 
 const fastify = Fastify({
   logger: true,
@@ -34,6 +36,14 @@ fastify.post("/company/account", async (request, reply) => {
 
   return reply.code(201).send(account);
 });
+
+fastify.post("/people", async (request, reply) => {
+  const params = request.body as PeopleType;
+
+  const people = PeopleRepository.create(params);
+
+  return reply.code(201).send(people);
+})
 
 // Run the server!
 try {
