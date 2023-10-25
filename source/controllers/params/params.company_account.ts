@@ -1,4 +1,4 @@
 export type CreateAccountParams = {
-  companyId: number;
+  ownerId: number;
   bankId: number;
 };

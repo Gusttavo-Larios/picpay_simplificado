@@ -8,6 +8,7 @@ import { AccountType } from "./source/core/entities/entity.account";
 import { CreateAccountParams } from "./source/controllers/params/params.company_account";
 import { PeopleType } from "./source/core/entities/entity.people";
 import PeopleRepository from "./source/database/repositories/repository.people";
+import { AccountTypeEnum } from "./source/enums/enum.account_type";
 
 const fastify = Fastify({
   logger: true,
@@ -17,6 +18,29 @@ const fastify = Fastify({
 fastify.get("/", async function handler(request, reply) {
   return { hello: "world" };
 });
+
+
+fastify.post("/people", async (request, reply) => {
+  const params = request.body as PeopleType;
+
+  const people = PeopleRepository.create(params);
+
+  return reply.code(201).send(people);
+});
+
+fastify.post("/people/account", async (request, reply) => {
+  const params = request.body as CreateAccountParams;
+
+  const account: AccountType = AccountRepository.create(
+    params.ownerId,
+    params.bankId,
+    AccountTypeEnum.Personal
+  );
+
+  return reply.code(201).send(account);
+});
+
+
 
 fastify.post("/company", async function name(request, reply) {
   const params = request.body as CompanyType;
@@ -30,20 +54,13 @@ fastify.post("/company/account", async (request, reply) => {
   const params = request.body as CreateAccountParams;
 
   const account: AccountType = AccountRepository.create(
-    params.companyId,
-    params.bankId
+    params.ownerId,
+    params.bankId,
+    AccountTypeEnum.Business
   );
 
   return reply.code(201).send(account);
 });
-
-fastify.post("/people", async (request, reply) => {
-  const params = request.body as PeopleType;
-
-  const people = PeopleRepository.create(params);
-
-  return reply.code(201).send(people);
-})
 
 // Run the server!
 try {
