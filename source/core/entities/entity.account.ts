@@ -12,5 +12,6 @@ export default interface AccountEntity extends AccountType {
 export type AccountType = {
   id: number;
   accountNumber: number;
+  amount: number;
   bankId: number;
 };

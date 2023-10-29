@@ -1,1 +1,7 @@
-export const SERVER_PORT = process.env.SERVER_PORT as string
+export const SERVER_PORT = process.env.SERVER_PORT as string;
+
+export const PAYMENT_AUTHORIZATION_SERVICE_URL = process.env
+  .PAYMENT_AUTHORIZATION_SERVICE_URL as string;
+
+export const TRANSACTION_NOTIFICATION_SERVICE_URL = process.env
+  .TRANSACTION_NOTIFICATION_SERVICE_URL as string;
