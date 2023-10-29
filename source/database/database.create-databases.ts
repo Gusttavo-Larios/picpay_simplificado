@@ -32,6 +32,7 @@ connection.run(`
     create table if not exists account(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         account_number varchar(10) not null unique,
+        amount decimal(11,2) not null,
         bank_id integer unsigned not null,
         constraint relation_account_bank foreign key (bank_id) references bank(id) 
     );
@@ -58,10 +59,11 @@ connection.run(`
 `);
 
 connection.run(`
-    create table if not exists released_transaction(
+    create table if not exists transaction_carried_out(
         id INTEGER PRIMARY KEY AUTOINCREMENT, 
         origin_account_id integer unsigned not null,
         target_account_id integer unsigned not null,
+        amount decimal(11,2) not null,
         foreign key (origin_account_id) references account(id),
         foreign key (target_account_id) references account(id)
     );
