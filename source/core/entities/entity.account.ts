@@ -7,11 +7,19 @@ export default interface AccountEntity extends AccountType {
 
   getBankId(): AccountType["bankId"];
   setBankId(bankId: AccountType["bankId"]): void;
+
+  getAmount(): AccountType["amount"];
+  setAmount(amount: AccountType["amount"]): void
+
+  getAccountTypeId(): AccountType["accountTypeId"];
+  setAccountTypeId(accountTypeId: AccountType["accountTypeId"]): void
 }
 
-export type AccountType = {
+export type AccountType<T = undefined> = {
   id: number;
   accountNumber: number;
   amount: number;
   bankId: number;
+  accountTypeId: number;
+  accountType?: T
 };

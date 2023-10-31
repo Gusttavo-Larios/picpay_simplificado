@@ -5,8 +5,8 @@ import {
 
 import { CarryOutTransactionUseCase } from "../../core/common/use_case.transaction";
 
-import AccountRepository from "../../database/repositories/respository.account";
-import TransactionCarriedOutRepository from "../../database/repositories/respository.transaction_carried_out";
+import AccountRepository from "../../database/repositories/repository.account";
+import TransactionCarriedOutRepository from "../../database/repositories/repository.transaction_carried_out";
 
 export class CarryOutTransactionUseCaseImpl
   implements CarryOutTransactionUseCase
@@ -24,6 +24,9 @@ export class CarryOutTransactionUseCaseImpl
 
     if (originAccount === null)
       throw new Error("Conta de origem não encontrada.");
+
+    // if (originAccount)
+    //   throw new Error("A conta de origem não pode ser do tipo empresárial.");
 
     const recipientAccount =
       this.accountRepository.findById(recipientAccountId);
@@ -46,11 +49,13 @@ export class CarryOutTransactionUseCaseImpl
     try {
       const originAccountNewAmount = originAccount?.amount - amount;
       this.accountRepository.update(originAccountId, {
+        ...originAccount,
         amount: originAccountNewAmount,
       });
 
       const recipientAccountNewAmount = recipientAccount?.amount + amount;
       this.accountRepository.update(recipientAccountId, {
+        ...recipientAccount,
         amount: recipientAccountNewAmount,
       });
 
@@ -59,10 +64,12 @@ export class CarryOutTransactionUseCaseImpl
       this.notifyTheRecipient();
     } catch (error) {
       this.accountRepository.update(originAccountId, {
+        ...originAccount,
         amount: originAccount.amount,
       });
 
       this.accountRepository.update(recipientAccountId, {
+        ...recipientAccount,
         amount: recipientAccount.amount,
       });
 

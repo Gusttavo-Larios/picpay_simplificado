@@ -29,12 +29,29 @@ connection.run(`
 `);
 
 connection.run(`
+        insert into bank (compe, name) values (001, 'Banco do Brasil S/A')
+`);
+
+connection.run(`
+    create table if not exists account_type(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        type varchar(20)
+    );
+`);
+
+connection.run(`
+    insert into account_type (type) values ('PERSONAL'), ('BUSINESS');
+`);
+
+connection.run(`
     create table if not exists account(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         account_number varchar(10) not null unique,
         amount decimal(11,2) not null,
         bank_id integer unsigned not null,
-        constraint relation_account_bank foreign key (bank_id) references bank(id) 
+        account_type_id integer unsigned not null,
+        foreign key (bank_id) references bank(id),
+        foreign key (account_type_id) references account_type(id) 
     );
 `);
 
@@ -67,8 +84,4 @@ connection.run(`
         foreign key (origin_account_id) references account(id),
         foreign key (target_account_id) references account(id)
     );
-`);
-
-connection.run(`
-        insert into bank (compe, name) values (001, 'Banco do Brasil S/A')
 `);

@@ -21,7 +21,7 @@ export class CompanyController {
     const { ownerId, bankId } = request.body as AccountBodyParams["openAccount"];;
 
     const createCompanyAccountUseCase = new CreateCompanyAccountUseCase();
-    const account = createCompanyAccountUseCase.createAccount(ownerId, bankId);
+    const account = createCompanyAccountUseCase.createAccount(ownerId, bankId, "BUSINESS");
 
     return reply.code(201).send(account);
   }

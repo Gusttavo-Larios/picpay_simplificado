@@ -23,7 +23,7 @@ export class PeopleController {
 
     const createPeopleAccountUseCase = new CreatePeopleAccountUseCase();
 
-    const account = createPeopleAccountUseCase.createAccount(ownerId, bankId);
+    const account = createPeopleAccountUseCase.createAccount(ownerId, bankId, "PERSONAL");
 
     return reply.code(201).send(account);
   }
