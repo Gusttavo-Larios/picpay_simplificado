@@ -7,7 +7,7 @@ export default class PeopleRepository {
     try {
       const people = connection.prepare(
         "insert into people(cpf, full_name, email, password) values(?,?,?,?) returning *",
-        [params.cpf, params.fullName, params.email, params.password]
+        [params.cpf, params.full_name, params.email, params.password]
       ).get() as PeopleType;
 
       return people;

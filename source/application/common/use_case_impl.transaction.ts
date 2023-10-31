@@ -21,12 +21,12 @@ export class CarryOutTransactionUseCaseImpl
     amount: number
   ): Promise<void> {
     const originAccount = this.accountRepository.findById(originAccountId);
-
+console.log({originAccount})
     if (originAccount === null)
       throw new Error("Conta de origem não encontrada.");
 
-    // if (originAccount)
-    //   throw new Error("A conta de origem não pode ser do tipo empresárial.");
+    if (originAccount.account_type?.type === "BUSINESS")
+      throw new Error("A conta de origem não pode ser do tipo empresárial.");
 
     const recipientAccount =
       this.accountRepository.findById(recipientAccountId);
@@ -49,13 +49,11 @@ export class CarryOutTransactionUseCaseImpl
     try {
       const originAccountNewAmount = originAccount?.amount - amount;
       this.accountRepository.update(originAccountId, {
-        ...originAccount,
         amount: originAccountNewAmount,
       });
 
       const recipientAccountNewAmount = recipientAccount?.amount + amount;
       this.accountRepository.update(recipientAccountId, {
-        ...recipientAccount,
         amount: recipientAccountNewAmount,
       });
 

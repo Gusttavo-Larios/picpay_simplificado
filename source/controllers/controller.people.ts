@@ -18,12 +18,12 @@ export class PeopleController {
   }
 
   static async openAccount(request: FastifyRequest, reply: FastifyReply) {
-    const { ownerId, bankId } =
+    const { ownerId, bank_id } =
       request.body as AccountBodyParams["openAccount"];
 
     const createPeopleAccountUseCase = new CreatePeopleAccountUseCase();
 
-    const account = createPeopleAccountUseCase.createAccount(ownerId, bankId, "PERSONAL");
+    const account = createPeopleAccountUseCase.createAccount(ownerId, bank_id, "PERSONAL");
 
     return reply.code(201).send(account);
   }

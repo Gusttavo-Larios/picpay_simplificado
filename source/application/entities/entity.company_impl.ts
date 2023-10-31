@@ -3,19 +3,19 @@ import CompanyEntity from "../../core/entities/entity.company";
 export default class CompanyEntityImpl implements CompanyEntity {
   id?: number | undefined;
   cnpj: string;
-  fullName: string;
+  full_name: string;
   email: string;
   password: string;
 
   constructor(
     cnpj: string,
-    fullName: string,
+    full_name: string,
     email: string,
     password: string,
     id?: number | undefined
   ) {
     this.cnpj = cnpj;
-    this.fullName = fullName;
+    this.full_name = full_name;
     this.email = email;
     this.password = password;
     this.id = id;
@@ -36,10 +36,10 @@ export default class CompanyEntityImpl implements CompanyEntity {
   }
 
   getFullName(): string {
-    return this.fullName;
+    return this.full_name;
   }
-  setFullName(fullName: string): void {
-    this.fullName = fullName;
+  setFullName(full_name: string): void {
+    this.full_name = full_name;
   }
 
   getEmail(): string {

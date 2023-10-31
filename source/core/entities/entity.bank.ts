@@ -6,7 +6,7 @@ export default interface BankEntity extends BankType {
   setCompe(compe: string): void;
 
   getName(): string;
-  setName(fullName: string): void;
+  setName(full_name: string): void;
 }
 
 export type BankType = {

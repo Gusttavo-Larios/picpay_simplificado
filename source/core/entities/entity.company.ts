@@ -6,7 +6,7 @@ export default interface CompanyEntity extends CompanyType {
   setCnpj(cnpj: string): void;
 
   getFullName(): string;
-  setFullName(fullName: string): void;
+  setFullName(full_name: string): void;
 
   getEmail(): string;
   setEmail(email: string): void;
@@ -18,7 +18,7 @@ export default interface CompanyEntity extends CompanyType {
 export type CompanyType = {
   id?: number;
   cnpj: string;
-  fullName: string;
+  full_name: string;
   email: string;
   password: string;
 };

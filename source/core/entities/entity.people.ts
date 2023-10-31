@@ -6,7 +6,7 @@ export default interface PeopleEntity extends PeopleType {
     setCpf(cpf: string): void;
   
     getFullName(): string;
-    setFullName(fullName: string): void;
+    setFullName(full_name: string): void;
   
     getEmail(): string;
     setEmail(email: string): void;
@@ -18,7 +18,7 @@ export default interface PeopleEntity extends PeopleType {
   export type PeopleType = {
     id?: number;
     cpf: string;
-    fullName: string;
+    full_name: string;
     email: string;
     password: string;
   };

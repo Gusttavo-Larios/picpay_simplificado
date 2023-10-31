@@ -18,10 +18,10 @@ export class CompanyController {
   }
 
   static async openAccount(request: FastifyRequest, reply: FastifyReply) {
-    const { ownerId, bankId } = request.body as AccountBodyParams["openAccount"];;
+    const { ownerId, bank_id } = request.body as AccountBodyParams["openAccount"];;
 
     const createCompanyAccountUseCase = new CreateCompanyAccountUseCase();
-    const account = createCompanyAccountUseCase.createAccount(ownerId, bankId, "BUSINESS");
+    const account = createCompanyAccountUseCase.createAccount(ownerId, bank_id, "BUSINESS");
 
     return reply.code(201).send(account);
   }

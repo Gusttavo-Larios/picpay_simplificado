@@ -16,7 +16,7 @@ async function main() {
 
   // Run the server!
   try {
-    await fastify.listen({host: '0.0.0.0', port: Number(3000) });
+    await fastify.listen({host: '0.0.0.0', port: Number(SERVER_PORT) });
   } catch (err) {
     fastify.log.error(err);
     process.exit(1);

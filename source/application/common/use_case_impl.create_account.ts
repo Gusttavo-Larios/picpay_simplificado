@@ -9,16 +9,16 @@ export abstract class CreateAccountUseCaseImpl implements CreateAccountUseCase {
 
   createAccount(
     ownerId: number,
-    bankId: number,
-    accountType: AccountTypeType["type"]
+    bank_id: number,
+    account_type: AccountTypeType["type"]
   ): AccountType {
-    const accountNumber = Date.now();
+    const account_number = Date.now();
 
     const account = this.accountRepository?.create({
-      bankId,
-      accountNumber,
-      amount: 0,
-      accountTypeId: accountType === "BUSINESS" ? 2 : 1,
+      bank_id,
+      account_number,
+      amount: 10000,
+      account_type_id: account_type === "BUSINESS" ? 2 : 1,
     });
 
     this.linkOwnerAndAccount(ownerId, account.id);

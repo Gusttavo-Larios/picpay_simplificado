@@ -7,7 +7,7 @@ export default class CompanyRepository {
     try {
       const company = connection.prepare(
         "insert into company(cnpj, full_name, email, password) values(?,?,?,?) returning *",
-        [params.cnpj, params.fullName, params.email, params.password]
+        [params.cnpj, params.full_name, params.email, params.password]
       ).get() as CompanyType;
 
       return company;

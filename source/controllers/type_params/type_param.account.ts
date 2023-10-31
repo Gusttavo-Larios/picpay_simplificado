@@ -1,6 +1,6 @@
 export type AccountBodyParams = {
   openAccount: {
-    bankId: number;
+    bank_id: number;
     ownerId: number;
   };
 };
