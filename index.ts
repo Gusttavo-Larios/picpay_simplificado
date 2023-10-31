@@ -10,12 +10,13 @@ const fastify = Fastify({
 });
 
 async function main() {
+
   fastify.register(peopleRoutes, { prefix: "/people" });
   fastify.register(companyRoutes, { prefix: "/company" });
 
   // Run the server!
   try {
-    await fastify.listen({ port: Number(SERVER_PORT) });
+    await fastify.listen({host: '0.0.0.0', port: Number(3000) });
   } catch (err) {
     fastify.log.error(err);
     process.exit(1);
