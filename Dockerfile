@@ -6,7 +6,11 @@ COPY ./package.json .
 
 RUN bun install
 
+RUN touch database.sqlite
+
 COPY . .
+
+RUN bun run ./source/database/database.create-databases.ts
 
 EXPOSE 3000
 
