@@ -1,15 +1,59 @@
 # picpay_simplificado
 
-To install dependencies:
 
-```bash
-bun install
+## Executar o projeto
+
+Para executar o projeto:
+
+```
+./build-local.sh
 ```
 
-To run:
+## Documentação do projeto
 
-```bash
-bun run index.ts
+**Para criar uma perfil do tipo pessoa**
+
+```POST: http://127.0.0.1:3000/people```
+```
+{
+    "full_name": "Nome de Teste",
+    "cpf": "999.999.999-99",
+    "email": "email@exemplo.com",
+    "senha": "12345"
+}
 ```
 
-This project was created using `bun init` in bun v1.0.4. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+**Para criar uma perfil do tipo empresa**
+
+```POST: http://127.0.0.1:3000/company```
+```
+{
+    "full_name": "Nome de Teste",
+    "cnpj": "99.999.999/9999-99",
+    "email": "email@exemplo.com",
+    "senha": "12345"
+}
+```
+
+**Para criar uma conta bancaria**
+
+```POST: http://127.0.0.1:3000/people/account```
+
+```POST: http://127.0.0.1:3000/company/account```
+```
+{
+    "ownerId": 1,
+    "bank_id": 1
+}
+```
+
+**Para realizar uma transação**
+
+```POST: http://127.0.0.1:3000/people/transact```
+```
+{
+    "originAccountId": 1,
+    "recipientAccountId": 2,
+    "amount": 100
+}
+```
