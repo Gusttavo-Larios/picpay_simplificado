@@ -1,5 +1,12 @@
 # picpay_simplificado
 
+## Ferramentas utilizadas
+
+- Typescript
+- Bun
+- Fastify
+- SQLite
+
 
 ## Executar o projeto
 
