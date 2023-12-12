@@ -1,8 +1,14 @@
-version: '3.3'
+version: '3.8'
+
 services:
+
   myappbun:
-    image: 'app:latest'
-    ports:
-      - 3000:3000
+    image: 'myappbun'
     env_file:
       - ./.env
+    working_dir: /home/bun/app
+    volumes:
+      - ./:/home/bun/app
+    command: sh -c "bun run ./source/database/database.create-databases.ts && bun start"
+    ports:
+      - 3000:3000

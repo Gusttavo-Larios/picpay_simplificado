@@ -21,7 +21,7 @@ export class CarryOutTransactionUseCaseImpl
     amount: number
   ): Promise<void> {
     const originAccount = this.accountRepository.findById(originAccountId);
-console.log({originAccount})
+
     if (originAccount === null)
       throw new Error("Conta de origem não encontrada.");
 

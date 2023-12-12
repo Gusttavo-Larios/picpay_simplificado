@@ -26,7 +26,7 @@ Para executar o projeto:
     "full_name": "Nome de Teste",
     "cpf": "999.999.999-99",
     "email": "email@exemplo.com",
-    "senha": "12345"
+    "password": "12345"
 }
 ```
 
@@ -38,7 +38,7 @@ Para executar o projeto:
     "full_name": "Nome de Teste",
     "cnpj": "99.999.999/9999-99",
     "email": "email@exemplo.com",
-    "senha": "12345"
+    "password": "12345"
 }
 ```
 
